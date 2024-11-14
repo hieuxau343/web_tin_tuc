@@ -39,26 +39,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         Category::create([
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug'),
+            'name' => $request->name,
+            'slug' => $request->slug,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
-        $currentPage = $request->input('page', 1);
 
 
-        $totalProducts = Category::count();
-
-
-        $limit = 4;
-        $totalPages = ceil($totalProducts / $limit);  // Số trang tổng cộng
-
-        if ($currentPage > $totalPages) {
-            $currentPage = $totalPages;
-        }
-
-        return redirect()->route('category.index', ['page' => $currentPage]);
+        return redirect()->route('category.index');
     }
 
 
@@ -90,14 +79,15 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'slug' => $request->slug,
-            'updated_at' => \Carbon\Carbon::now(), 
+            'updated_at' => \Carbon\Carbon::now(),
         ]);
 
         // Trả về dữ liệu đã cập nhật
         return response()->json([
+            'id' => $category->id,
             'name' => $category->name,
             'slug' => $category->slug,
-            'updated_at' => $category->updated_at->format('Y-m-d H:i:s') 
+            'updated_at' => $category->updated_at->format('Y-m-d H:i:s')
         ]);
     }
 

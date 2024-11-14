@@ -1,23 +1,38 @@
 $(function () {
-    let currentCategoryId = null;
+    const pathname = window.location.pathname;
+    const pathSegments = pathname.split("/");
+    const entity = pathSegments[1];
 
+    // NUT SUA
     $(".btn-edit").click(function (event) {
-        event.preventDefault(); // Ngăn chặn hành động mặc định (tránh reload trang)
+        event.preventDefault();
 
-        var categoryId = $(this).data("id"); // Lấy ID danh mục từ thuộc tính data-id của nút
+        var id = $(this).data("id");
 
-        // Gửi yêu cầu Ajax để lấy dữ liệu và điền vào form
         sendAjaxRequest(
-            "/category/" + categoryId + "/edit", // Đúng với cấu trúc URL của route edit
+            `/${entity}/${id}/edit`,
             "GET",
             {},
             function (response) {
-                // Điền dữ liệu vào modal
-                $("#editName").val(response.name);
-                $("#editSlug").val(response.slug);
-                $("#editId").val(response.id);
+                if (entity === "category") {
+                    $("#editName").val(response.name);
+                    $("#editSlug").val(response.slug);
+                    $("#editId").val(response.id);
+                } else if (entity === "account") {
+                    $("#editName").val(response.fullname);
+                    $("#editPhone").val(response.phone);
+                    $("#editEmail").val(response.email);
+                    $("#editRole").val(response.role);
+                    $("#editDateOfBirth").val(response.birthday);
+                    $("#editId").val(response.id);
 
-                // Hiển thị modal
+                    if (response.gender === "Nam") {
+                        $("#male").prop("checked", true);
+                    } else if (response.gender === "Nữ") {
+                        $("#female").prop("checked", true);
+                    }
+                }
+
                 $("#editModal").modal("show");
             },
             function (error) {
@@ -26,29 +41,21 @@ $(function () {
         );
     });
 
+    // Nut save model
     $(".btn-save").click(function (event) {
         event.preventDefault();
-        var categoryId = $("#editId").val(); // Lấy ID từ trường ẩn
-        var formData = {
-            name: $("#editName").val(),
-            slug: $("#editSlug").val(),
-        };
-
-        // Sử dụng template string đúng cú pháp và gọi Ajax
+        var id = $("#editId").val();
+        var formData = getFormData(entity);
+        console.log(formData);
         sendAjaxRequest(
-            "/category/" + categoryId, // Đảm bảo URL đúng
-            "PUT", // Phương thức PUT
-            formData, // Dữ liệu cần gửi
+            `/${entity}/${id}`,
+            "PUT",
+            formData,
             function (response) {
-                // Đóng modal sau khi lưu
                 $("#editModal").modal("hide");
                 alert("Danh mục đã được cập nhật thành công!");
-                console.log(response.created_at);
 
-                // Cập nhật dữ liệu trên trang nếu cần thiết
-                $("#categoryName").text(response.name);
-                $("#categorySlug").text(response.slug);
-                $("#categoryUpdate").text(response.updated_at);
+                updateRow(entity, response);
             },
             function (error) {
                 console.log("Lỗi khi cập nhật danh mục:", error);
@@ -59,17 +66,19 @@ $(function () {
         );
     });
 
+    //NUT XOA
     $(".btn-delete").click(function (event) {
         event.preventDefault();
-        var categoryId = $(this).data("id");
-        $(".btn-confirm").attr("data-id", categoryId);
+        var id = $(this).data("id");
+        $(".btn-confirm").attr("data-id", id);
         $("#confirmationModal").modal("show");
     });
 
+    // XAC NHAN XOA
     $(".btn-confirm").click(function () {
-        var categoryId = $(this).attr("data-id");
+        var id = $(this).attr("data-id");
         sendAjaxRequest(
-            "/category/" + categoryId,
+            `/${entity}/` + id,
             "DELETE",
             null,
             function (response) {
@@ -78,7 +87,7 @@ $(function () {
                     $("#confirmationModal").modal("hide");
                     alert(response.message);
                     // Cập nhật giao diện sau khi xóa (ví dụ, xóa dòng khỏi bảng)
-                    $("#row-" + categoryId).remove();
+                    $("#row-" + id).remove();
                 } else {
                     alert("Xóa thất bại!");
                 }
@@ -93,3 +102,48 @@ $(function () {
         );
     });
 });
+
+// form getData
+function getFormData(entity) {
+    const formData = {};
+
+    if (entity === "category") {
+        formData.name = $("#editName").val();
+        formData.slug = $("#editSlug").val();
+    } else if (entity === "account") {
+        formData.name = $("#editName").val();
+        formData.phone = $("#editPhone").val();
+        formData.email = $("#editEmail").val();
+        formData.role = $("#editRole").val();
+        formData.birthday = $("#editDateOfBirth").val();
+        formData.gender = $("input[name='gender']:checked").val();
+    } else if (entity === "advertisement") {
+        formData.title = $("#editTitle").val();
+        formData.content = $("#editContent").val();
+        formData.startDate = $("#editStartDate").val();
+        formData.endDate = $("#editEndDate").val();
+    } else if (entity === "posts") {
+        formData.title = $("#editTitle").val();
+        formData.content = $("#editContent").val();
+        formData.author = $("#editAuthor").val();
+    }
+
+    return formData;
+}
+
+function updateRow(entity, response) {
+    var row = $(`#row-${response.id}`); // Lấy dòng dựa trên ID của entity từ response
+    if (entity === "category") {
+        row.find(".categoryName").text(response.name);
+        row.find(".categorySlug").text(response.slug);
+        row.find(".categoryUpdate").text(response.updated_at);
+    } else if (entity === "account") {
+        row.find(".accountName").text(response.fullname);
+        row.find(".accountPhone").text(response.phone);
+        row.find(".accountEmail").text(response.email);
+        row.find(".accountRole").text(response.role);
+        row.find(".accountGender").text(response.gender);
+        row.find(".accountBirth").text(response.birthday);
+    }
+    // Thêm các điều kiện khác nếu có các entity khác như advertisement, posts
+}

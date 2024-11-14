@@ -16,10 +16,10 @@
      @foreach ($categories as $index => $category)
      <tr id="row-{{$category->id}}">
         <th scope="row">{{ ($categories->currentPage() - 1) * $categories->perPage() + $index + 1 }}</th>
-        <td id="categoryName">{{$category->name}}</td>
-        <td id="categorySlug">{{$category->slug}}</td>
+        <td class="categoryName">{{$category->name}}</td>
+        <td class="categorySlug">{{$category->slug}}</td>
         <td>{{$category->created_at}}</td>
-        <td id="categoryUpdate">{{$category->updated_at}}</td>
+        <td class="categoryUpdate">{{$category->updated_at}}</td>
         <td><a href="#" class='text-warning btn-edit' data-id="{{$category->id}}">Sửa</a></td>
         <td><a href="#" class='text-danger btn-delete' data-id="{{$category->id}}">Xóa</a></td>
       </tr>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-body">
                 <form id="editForm">
-                    <input type="hidden" name="id" id="editId">
+                    <input type="hidden" name="id" id="editId"> <!-- Trường ẩn -->
                     <div class="mb-3">
                         <label for="editName" class="form-label">Tên danh mục</label>
                         <input type="text" class="form-control" id="editName" name="name" required>
