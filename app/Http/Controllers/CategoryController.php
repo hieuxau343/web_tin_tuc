@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
 
-        $limit = 4; // Số mục trên mỗi trang
+        $limit = 6; // Số mục trên mỗi trang
 
         // Lấy các danh mục với phân trang từ model Category
         $categories = Category::paginate($limit);
