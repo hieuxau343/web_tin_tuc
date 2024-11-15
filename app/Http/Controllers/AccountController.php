@@ -35,7 +35,7 @@ class AccountController extends Controller
             'gender' => $request->gender,
             'birthday' => $request->birthday,
             'role' => $request->role,
-            'username'=>$request->username,
+            'username' => $request->username,
             'password' => $request->password
         ]);
 
