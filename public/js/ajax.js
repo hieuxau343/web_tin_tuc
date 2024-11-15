@@ -8,6 +8,6 @@ function sendAjaxRequest(url, type, data, successCallback, errorCallback) {
         },
         success: function (response) {
             successCallback(response);
-        },
+        },  
     });
 }

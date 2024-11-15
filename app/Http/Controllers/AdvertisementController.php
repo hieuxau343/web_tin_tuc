@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Advertisement;
 
-class Advertisement extends Controller
+class AdvertisementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $limit 
+        $limit = 4;
+
+        $ad = Advertisement::paginate($limit);
+        return view('advertisement.index', ['advers' => $ad]);
     }
 
     /**
@@ -27,7 +31,6 @@ class Advertisement extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

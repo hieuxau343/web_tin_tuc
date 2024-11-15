@@ -66,7 +66,6 @@ $(function () {
         );
     });
 
-    //NUT XOA
     $(".btn-delete").click(function (event) {
         event.preventDefault();
         var id = $(this).data("id");
