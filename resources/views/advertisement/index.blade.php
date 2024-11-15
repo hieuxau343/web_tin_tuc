@@ -20,9 +20,11 @@
                 <tr id="row-{{ $adv->id }}">
                     <th scope="row">{{ ($advers->currentPage() - 1) * $advers->perPage() + $index + 1 }}</th>
                     <td class="advTitle">{{ $adv->title }}</td>
-                    <td class="advSlug">{{ $adv->slug }}</td>
-                    <td>{{ $adv->created_at }}</td>
-                    <td class="advUpdate">{{ $adv->updated_at }}</td>
+                    <td class="advImg"><img src="{{ asset($adv->image) }}" alt=""></td>
+                    <td><a class='text-primary' href="{{ $adv->link }}">{{ $adv->link }}</a></td>
+                    <td class="advCreated">{{ $adv->formatted_created_at }}</td>
+                    <td class="advUpdated">{{ $adv->formatted_updated_at }}</td>
+                    <td class="advStatus">{{ $adv->status }}</td>
                     <td><a href="#" class='text-warning btn-edit' data-id="{{ $adv->id }}">Sửa</a></td>
                     <td><a href="#" class='text-danger btn-delete' data-id="{{ $adv->id }}">Xóa</a></td>
                 </tr>
