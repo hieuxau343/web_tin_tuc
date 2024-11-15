@@ -38,8 +38,7 @@
                     </a>
                 </li>
                 <li class='nav-item has-treeview mt-2'>
-                    <a href = "{{ route('advertisement.index') }} "
-                        class='nav-link @if (request()->is('ads*')) active @endif'>
+                    <a href="" class='nav-link @if (request()->is('ads*')) active @endif'>
                         <i class='nav-icon fas fa-tachometer-alt'></i>
                         <span class='mb-0'>Quảng cáo</span>
                     </a>
