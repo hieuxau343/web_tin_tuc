@@ -14,26 +14,7 @@ $(function () {
             "GET",
             {},
             function (response) {
-                if (entity === "category") {
-                    $("#editName").val(response.name);
-                    $("#editSlug").val(response.slug);
-                    $("#editId").val(response.id);
-                } else if (entity === "account") {
-                    $("#editName").val(response.fullname);
-                    $("#editPhone").val(response.phone);
-                    $("#editEmail").val(response.email);
-                    $("#editRole").val(response.role);
-                    $("#editDateOfBirth").val(response.birthday);
-                    $("#editId").val(response.id);
-
-                    if (response.gender === "Nam") {
-                        $("#male").prop("checked", true);
-                    } else if (response.gender === "Nữ") {
-                        $("#female").prop("checked", true);
-                    }
-                }
-
-                $("#editModal").modal("show");
+                fillModel(entity, response);
             },
             function (error) {
                 console.log("Lỗi khi lấy dữ liệu danh mục:", error);
@@ -54,7 +35,7 @@ $(function () {
             function (response) {
                 $("#editModal").modal("hide");
                 alert("Danh mục đã được cập nhật thành công!");
-
+                console.log(response);
                 updateRow(entity, response);
             },
             function (error) {
@@ -117,10 +98,10 @@ function getFormData(entity) {
         formData.birthday = $("#editDateOfBirth").val();
         formData.gender = $("input[name='gender']:checked").val();
     } else if (entity === "advertisement") {
-        formData.title = $("#editTitle").val();
-        formData.content = $("#editContent").val();
-        formData.startDate = $("#editStartDate").val();
-        formData.endDate = $("#editEndDate").val();
+        formData.title = editTitleEditor.getData(); // Lấy dữ liệu từ CKEditor cho title
+        formData.img = $("#editImg")[0].files[0]; // Lấy file từ input (nếu cần upload)
+        formData.link = editLinkEditor.getData(); // Lấy dữ liệu từ CKEditor cho link
+        formData.status = $("#editStatus").val(); // Lấy giá trị của dropdown
     } else if (entity === "posts") {
         formData.title = $("#editTitle").val();
         formData.content = $("#editContent").val();
@@ -143,6 +124,51 @@ function updateRow(entity, response) {
         row.find(".accountRole").text(response.role);
         row.find(".accountGender").text(response.gender);
         row.find(".accountBirth").text(response.birthday);
+    } else if (entity === "advertisement") {
+        row.find("td").eq(1).text(response.title);
+        row.find("td").eq(2).html(`<img src="${response.img}" alt="">`);
+        row.find("td")
+            .eq(3)
+            .html(
+                `<a class='text-primary' href="${response.link}" target="_blank">${response.link}</a>`
+            );
+        row.find("td").eq(5).text(response.updated_at);
+        row.find("td").eq(6).text(response.status);
     }
-    // Thêm các điều kiện khác nếu có các entity khác như advertisement, posts
+}
+
+function fillModel(entity, response) {
+    if (entity === "category") {
+        $("#editName").val(response.name);
+        $("#editSlug").val(response.slug);
+        $("#editId").val(response.id);
+    } else if (entity === "account") {
+        $("#editName").val(response.fullname);
+        $("#editPhone").val(response.phone);
+        $("#editEmail").val(response.email);
+        $("#editRole").val(response.role);
+        $("#editDateOfBirth").val(response.birthday);
+        $("#editId").val(response.id);
+
+        if (response.gender === "Nam") {
+            $("#male").prop("checked", true);
+        } else if (response.gender === "Nữ") {
+            $("#female").prop("checked", true);
+        }
+    } else if (entity === "advertisement") {
+        $("#editId").val(response.id);
+
+        editTitleEditor.setData(response.title); // Điền tiêu đề
+        editLinkEditor.setData(response.link); // Điền link
+        $("#editStatus").val(response.status);
+
+        if (response.image) {
+            $("#previewImg")
+                .attr("src", "/images/" + response.image)
+                .show();
+        } else {
+            $("#previewImg").hide();
+        }
+    }
+    $("#editModal").modal("show");
 }

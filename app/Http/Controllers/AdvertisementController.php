@@ -23,7 +23,7 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        //
+        return view('advertisement.add');
     }
 
     /**
@@ -31,6 +31,23 @@ class AdvertisementController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+        }
+
+        Advertisement::create([
+            'title' => $request->title,
+            'image' => $imageName,
+            'link' => $request->link,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+            'status' => $request->status
+
+        ]);
+        return redirect()->route('advertisement.index');
+
     }
 
     /**
@@ -46,7 +63,9 @@ class AdvertisementController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $adv = Advertisement::find($id);
+
+        return response()->json($adv);
     }
 
     /**
@@ -54,7 +73,33 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return '1';
+
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $imageName = $image->getClientOriginalName();
+        //     $image->move(public_path('images'), $imageName);
+
+        // }
+
+
+        // $adv = Advertisement::find($id);
+        // $adv->update([
+        //     'title' => $request->title,
+        //     // 'image' => $imageName,
+        //     // 'link' => $request->link,
+        //     // 'updated_at' => \Carbon\Carbon::now(),
+        //     // 'status' => $request->status
+        // ]);
+
+        // return response()->json([
+        //     'id' => $adv->id,
+        //     'title' => $adv->title,
+        //     'img' => asset('images/' . $adv->image),
+        //     'link' => $adv->link,
+        //     'updated_at' => $adv->updated_at,
+        //     'status' => $adv->status
+        // ]);
     }
 
     /**
