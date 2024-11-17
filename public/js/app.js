@@ -47,6 +47,7 @@ $(function () {
         );
     });
 
+    //BUTTON XOA
     $(".btn-delete").click(function (event) {
         event.preventDefault();
         var id = $(this).data("id");
@@ -118,7 +119,7 @@ function updateRow(entity, response) {
         row.find(".categorySlug").text(response.slug);
         row.find(".categoryUpdate").text(response.updated_at);
     } else if (entity === "account") {
-        row.find(".accountName").text(response.fullname);
+        row.find(".accountName").text(response.name);
         row.find(".accountPhone").text(response.phone);
         row.find(".accountEmail").text(response.email);
         row.find(".accountRole").text(response.role);

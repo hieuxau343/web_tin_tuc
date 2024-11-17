@@ -75,6 +75,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+
         $category = Category::findOrFail($id);
         $category->update([
             'name' => $request->name,
@@ -104,6 +106,8 @@ class CategoryController extends Controller
             return response()->json(['success' => false, 'message' => 'Category deletion failed.'], 500);
         }
     }
+
+
 }
 
 

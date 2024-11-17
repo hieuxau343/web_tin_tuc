@@ -77,7 +77,7 @@ class AccountController extends Controller
 
         return response()->json([
             'id' => $account->id,
-            'name' => $account->name,
+            'name' => $account->fullname,
             'phone' => $account->phone,
             'email' => $account->email,
             'gender' => $account->gender,

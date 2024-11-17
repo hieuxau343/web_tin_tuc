@@ -3,7 +3,6 @@ function sendAjaxRequest(url, type, data, successCallback, errorCallback) {
         url: url,
         type: type,
         data: data,
-
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
