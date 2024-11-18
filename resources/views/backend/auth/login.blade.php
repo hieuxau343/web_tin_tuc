@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
 
+
 </head>
 
 <body>
@@ -30,7 +31,7 @@
             @if ($errors->has('password'))
                 <p class="error-message">{{ $errors->first('password') }}</p>
             @endif
-            <button type="submit" class="btn btn-primary form-control mb-3 ">Đăng nhập</button>
+            <button id="submitButton" type="submit" class="btn btn-primary form-control mb-3 ">Đăng nhập</button>
             @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
@@ -51,8 +52,14 @@
             @endif
         </form>
     </div>
-    <!-- Nhúng JavaScript sau thẻ <body> -->
+
+
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

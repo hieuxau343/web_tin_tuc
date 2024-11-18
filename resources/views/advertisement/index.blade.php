@@ -26,8 +26,11 @@
                     <td class="advCreated">{{ $adv->formatted_created_at }}</td>
                     <td class="advUpdated">{{ $adv->formatted_updated_at }}</td>
                     <td class="advStatus">{{ $adv->status }}</td>
-                    <td><a href="#" class='text-warning btn-edit' data-id="{{ $adv->id }}">Sửa</a></td>
-                    <td><a href="#" class='text-danger btn-delete' data-id="{{ $adv->id }}">Xóa</a></td>
+                    <td><a href="{{ route('advertisement.edit', $adv->id) }}" class='text-warning '
+                            data-id="{{ $adv->id }}">Sửa</a>
+                    </td>
+                    <td><a href="" class='text-danger btn-delete' data-id="{{ $adv->id }}">Xóa</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -104,6 +107,26 @@
 
                         <button type="submit" class="btn btn-primary btn-save">Lưu</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Confirm delete --}}
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Xác nhận xóa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa không?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                    <button type="button" class="btn btn-danger btn-confirm" id="confirmDelete">Xác nhận</button>
                 </div>
             </div>
         </div>

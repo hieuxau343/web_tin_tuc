@@ -15,9 +15,10 @@
 <body>
     <div class='container'>
 
-        <h1>Thêm @yield('name')</h1>
+        <h1> @yield('name')</h1>
         <form method="POST" action="@yield('action_url')" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             @yield('form_content')
 
         </form>
@@ -25,5 +26,7 @@
     @yield('js-custom')
     <script src="{{ asset('js/toggle.js') }}"></script>
 </body>
+<script src="{{ asset('js/toggle.js') }}"></script>
+
 
 </html>

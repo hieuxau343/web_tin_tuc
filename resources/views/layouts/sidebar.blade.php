@@ -12,7 +12,8 @@
             <hr>
             <ul class='nav nav-pills nav-sidebar flex-column'>
                 <li class='nav-item has-treeview mt-2'>
-                    <a href="{{ url('/') }}" class="nav-link @if (request()->is('/')) active @endif">
+                    <a href="{{ route('dashboard.index') }}"
+                        class="nav-link @if (request()->is('/')) active @endif">
                         <i class='nav-icon fas fa-tachometer-alt'></i>
                         <span class='mb-0'>Trang chủ</span>
                     </a>

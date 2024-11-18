@@ -23,7 +23,7 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        return view('advertisement.add');
+        return view('advertisement.add', ['is_edit' => false]);
     }
 
     /**
@@ -33,21 +33,26 @@ class AdvertisementController extends Controller
     {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
+            // Tạo tên ảnh ngẫu nhiên
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            // Di chuyển ảnh vào thư mục 'images' trong public
             $image->move(public_path('images'), $imageName);
+
         }
 
+
+        // Tạo mới quảng cáo
         Advertisement::create([
-            'title' => $request->title,
-            'image' => $imageName,
-            'link' => $request->link,
+            'title' => strip_tags($request->title),
+            'image' => $imageName,  // Đảm bảo giá trị này hợp lệ
+            'link' => strip_tags($request->link),
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
             'status' => $request->status
-
         ]);
-        return redirect()->route('advertisement.index');
 
+        // Sau khi lưu thành công, chuyển hướng về danh sách quảng cáo
+        return redirect()->route('advertisement.index');
     }
 
     /**
@@ -65,7 +70,8 @@ class AdvertisementController extends Controller
     {
         $adv = Advertisement::find($id);
 
-        return response()->json($adv);
+        return view('advertisement.add', ['data' => $adv, 'is_edit' => true]);
+
     }
 
     /**
@@ -73,14 +79,14 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return '1';
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            // Tạo tên ảnh ngẫu nhiên
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            // Di chuyển ảnh vào thư mục 'images' trong public
+            $image->move(public_path('images'), $imageName);
 
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $imageName = $image->getClientOriginalName();
-        //     $image->move(public_path('images'), $imageName);
-
-        // }
+        }
 
 
         // $adv = Advertisement::find($id);

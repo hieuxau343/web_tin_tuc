@@ -17,7 +17,7 @@ Route::resource('account', AccountController::class);
 
 Route::resource('advertisement', AdvertisementController::class);
 
-Route::get("admin", [AuthController::class, 'index'])->name('auth.admin');
+Route::get("admin", [AuthController::class, 'index'])->name('auth.admin')->middleware('guest'); // Thêm middleware 'guest' để chỉ cho phép người dùng chưa đăng nhập truy cập trang này.
 Route::post("login", [AuthController::class, 'login'])->name('auth.login');
 
 
