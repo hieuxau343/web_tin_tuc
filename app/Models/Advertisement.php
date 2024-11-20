@@ -10,11 +10,11 @@ class Advertisement extends Model
 
     public function getFormattedCreatedAtAttribute()
     {
-        return $this->created_at->format('d-m-Y H:i:s');
+        return $this->created_at->format('d-m-Y');
     }
 
     public function getFormattedUpdatedAtAttribute()
     {
-        return $this->updated_at->format('d-m-Y H:i:s');
+        return $this->updated_at->format('d-m-Y');
     }
 }

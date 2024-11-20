@@ -1,4 +1,4 @@
-<div style="width:234px;float-left">
+<div style="">
 
     <div id='sidebar'>
         <a href="" class='brand-link'>
@@ -26,7 +26,8 @@
                     </a>
                 </li>
                 <li class='nav-item has-treeview mt-2'>
-                    <a href="" class='nav-link @if (request()->is('news*')) active @endif'>
+                    <a href="{{ route('post.index') }}"
+                        class='nav-link @if (request()->is('news*')) active @endif'>
                         <i class='nav-icon fas fa-tachometer-alt'></i>
                         <span class='mb-0'>Tin tức</span>
                     </a>

@@ -6,7 +6,6 @@ $(function () {
     // NUT SUA
     $(".btn-edit").click(function (event) {
         event.preventDefault();
-
         var id = $(this).data("id");
 
         sendAjaxRequest(
@@ -63,15 +62,8 @@ $(function () {
             "DELETE",
             null,
             function (response) {
-                if (response.success) {
-                    // Ẩn modal sau khi xóa thành công
-                    $("#confirmationModal").modal("hide");
-                    alert(response.message);
-                    // Cập nhật giao diện sau khi xóa (ví dụ, xóa dòng khỏi bảng)
-                    $("#row-" + id).remove();
-                } else {
-                    alert("Xóa thất bại!");
-                }
+                $("#confirmationModal").modal("hide");
+                $("#row-" + id).remove();
             },
             function (xhr) {
                 // Xử lý lỗi khi có lỗi trong AJAX

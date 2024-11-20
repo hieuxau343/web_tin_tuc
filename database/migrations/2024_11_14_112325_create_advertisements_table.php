@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('advertisements', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255);
-            $table->text('image');
-            $table->string('link', 200);
+            $table->string('title', 255)->nullable();
+            $table->text('image')->nullable();
+            $table->string('link', 200)->nullable();
             $table->timestamps();
             $table->string('status', 10)->default("PUBLIC");
         });

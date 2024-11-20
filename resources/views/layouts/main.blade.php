@@ -10,7 +10,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 
@@ -27,7 +26,7 @@
             top: 0;
             left: 0;
             bottom: 0;
-            width: 234px;
+            width: 200px;
             padding: 13px 0px;
             background-color: hsl(210 11% 15%);
             color: hsl(none 0% 100%);
@@ -64,7 +63,7 @@
             padding: 0 20px;
             background-color: orange;
             color: black;
-            width: calc(100% - 234px);
+            width: calc(100% - 200px);
         }
 
         .main-content {
@@ -73,7 +72,7 @@
             padding: 10px;
             height: 550px;
             background-color: hsl(220, 29%, 97%);
-            width: calc(100% - 234px);
+            width: calc(100% - 200px);
             /* Adjust width to account for sidebar */
         }
 
@@ -111,11 +110,25 @@
             text-decoration: none;
             z-index: 10;
         }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        table td {
+            overflow: hidden;
+            /* Ẩn phần văn bản thừa */
+            text-overflow: ellipsis;
+            /* Thêm "..." khi văn bản quá dài */
+            white-space: nowrap;
+            /* Ngăn văn bản xuống dòng */
+        }
     </style>
     @include('layouts.sidebar')
     @include('layouts.header')
     <div
-        style="width: calc(100% - 234px); float: right; padding: 10px 0px; height: 550px; background-color: hsl(220 29% 97%)">
+        style="width: calc(100% - 200px); float: right; padding: 10px 0px; height: 550px; background-color: hsl(220 29% 97%)">
         <div class="container-fluid">
 
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -137,6 +150,9 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+
 
 </body>
 

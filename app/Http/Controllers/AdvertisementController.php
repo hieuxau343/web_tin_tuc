@@ -79,6 +79,8 @@ class AdvertisementController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $adv = Advertisement::find($id);
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             // Tạo tên ảnh ngẫu nhiên
@@ -86,26 +88,23 @@ class AdvertisementController extends Controller
             // Di chuyển ảnh vào thư mục 'images' trong public
             $image->move(public_path('images'), $imageName);
 
+        } else {
+            $imageName = $adv->image;
         }
 
 
-        // $adv = Advertisement::find($id);
-        // $adv->update([
-        //     'title' => $request->title,
-        //     // 'image' => $imageName,
-        //     // 'link' => $request->link,
-        //     // 'updated_at' => \Carbon\Carbon::now(),
-        //     // 'status' => $request->status
-        // ]);
-
-        // return response()->json([
-        //     'id' => $adv->id,
-        //     'title' => $adv->title,
-        //     'img' => asset('images/' . $adv->image),
-        //     'link' => $adv->link,
-        //     'updated_at' => $adv->updated_at,
-        //     'status' => $adv->status
-        // ]);
+        $isUpdated = $adv->update([
+            'title' => $request->title,
+            'image' => $imageName,
+            'link' => $request->link,
+            'updated_at' => \Carbon\Carbon::now(),
+            'status' => $request->status
+        ]);
+        if ($isUpdated) {
+            flash()->success('Cập nhật thành công');
+            return redirect()->route('advertisement.index');
+        } else
+            flash()->error("Cập nhật thất bại");
     }
 
     /**
@@ -113,6 +112,11 @@ class AdvertisementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $deleted = Advertisement::destroy($id);
+        if ($deleted) {
+            flash()->success("Xóa thành công");
+        } else {
+            flash()->error("Xóa thất bại");
+        }
     }
 }

@@ -27,11 +27,14 @@ class AuthController extends Controller
             'password' => $request->input('password')
 
         ];
+        // Đã mã hóa sau khi qua attempt
+        // Đúng thì vào dashboard có hiện thông báo flashcard
         if (Auth::attempt($crdentials)) {
             flash()->addSuccess("Đăng nhập thành công");
 
             return redirect()->route('dashboard.index');
-        } else {
+
+        } else {  //Ko đúng thì quay vẫn ở lại trang đăng nhập và hiên thông báo
 
 
             flash()->addError("Email hoặc mật khẩu không chính xác");
