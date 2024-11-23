@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('name_page', 'Tin tức')
 @section('content')
-    <table class="table" style="min-height: 204px">
+    <table class="table " style="min-height: 204px">
         <thead>
             <tr>
                 <th scope="col" style="width:40px">#</th>
@@ -20,7 +20,7 @@
             @foreach ($posts as $index => $post)
                 <tr id="row-{{ $post->id }}">
                     <th scope="row">{{ ($posts->currentPage() - 1) * $posts->perPage() + $index + 1 }}</th>
-                    <td class="postName">{{ $post->title }}</td>
+                    <td class="postName">{!! $post->title !!}</td>
                     <td class="postSlug">{{ $post->slug }}</td>
                     <td class="ellipsis">
                         <img src="" alt="">

@@ -33,8 +33,40 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            // Tạo tên ảnh ngẫu nhiên
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $path = $image->move(public_path('storage/photos/19/post'), $imageName);
+
+        }
+        $create = Post::create([
+            'title' => ($request->title),
+            'image' => $imageName,
+            'content' => ($request->link),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+            'status' => $request->status,
+            'category_id' => $request->category
+
+        ]);
+
+        if ($create) {
+            flash()->success("Thêm tin tức thành công");
+            return redirect()->route('post.index');
+
+        } else {
+            flash()->error("Thêm tin tức thất bại");
+
+            return redirect()->route('post.index');
+        }
+
+
 
     }
+
 
     /**
      * Display the specified resource.

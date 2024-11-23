@@ -21,7 +21,8 @@
                 <tr id="row-{{ $adv->id }}">
                     <th scope="row">{{ ($advers->currentPage() - 1) * $advers->perPage() + $index + 1 }}</th>
                     <td class="advTitle">{!! $adv->title !!}</td>
-                    <td class="advImg"><img src="{{ asset('images/' . $adv->image) }}" alt=""></td>
+                    <td class="advImg"><img src="{{ asset('storage/photos/19/advertisement/' . $adv->image) }}"
+                            alt=""></td>
                     <td><a class='text-primary' href="{{ $adv->link }}">{!! $adv->link !!}</a></td>
                     <td class="advCreated">{{ $adv->formatted_created_at }}</td>
                     <td class="advUpdated">{{ $adv->formatted_updated_at }}</td>

@@ -10,7 +10,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
 </head>
 
 <body>
@@ -47,7 +47,9 @@
             padding: 0 20px;
         }
 
-        a {
+
+
+        .a-primary {
             color: hsl(none 0% 100%) !important;
             text-decoration: none;
         }
@@ -143,15 +145,12 @@
         </div>
     </div>
     @include('layouts.footer')
-    @yield('js-custom')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
 </body>

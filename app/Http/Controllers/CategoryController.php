@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.add');
+        return view('category.add', ['is_edit' => false]);
     }
 
     /**
@@ -38,16 +38,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
+        $create = Category::create([
             'name' => $request->name,
             'slug' => $request->slug,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
+        if ($create) {
+            flash()->success("Thêm thành công");
+            return redirect()->route('category.index');
+        } else {
+            flash()->error("Thêm thất bại");
+            return redirect()->route('category.index');
+        }
 
-
-        return redirect()->route('category.index');
     }
 
 
@@ -78,13 +83,13 @@ class CategoryController extends Controller
 
 
         $category = Category::findOrFail($id);
-        $category->update([
+        $update = $category->update([
             'name' => $request->name,
             'slug' => $request->slug,
             'updated_at' => \Carbon\Carbon::now(),
         ]);
 
-        // Trả về dữ liệu đã cập nhật
+
         return response()->json([
             'id' => $category->id,
             'name' => $category->name,

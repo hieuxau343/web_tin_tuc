@@ -10,14 +10,20 @@
 
     <div class="mb-3">
         <h3 for="post-title" class="form-label">Tiêu đề</h3>
-        <textarea class="form-control" id="post-title" name="title">{{ $is_edit ? $data->title : '' }}</textarea>
+        <textarea name="title">
+            @if ($is_edit && $data->title)
+{!! $data->title !!}
+@endif    
+</textarea>
+
     </div>
+
 
     <div class="mb-3">
         <h3 for="image" class="form-label">Hình ảnh</h3>
         <input type="file" class="form-control" id="image" name="image" accept="image/*">
         @if ($is_edit && $data->image)
-            <img id="preview" src="{{ asset('images/' . $data->image) }}" alt="Xem trước hình ảnh"
+            <img id="preview" src="{{ asset('storage/photos' . $data->image) }}" alt="Xem trước hình ảnh"
                 style="max-width: 20%; margin-top: 10px;">
             <button id="clearPreview" type="button" style="display: block; margin-top: 10px;">Xóa ảnh</button>
         @else
@@ -28,7 +34,11 @@
 
     <div class="mb-3">
         <h3 for="post-content" class="form-label">Nội dung</h3>
-        <textarea class=" ckeditor" id="post-content" name="content">{{ $is_edit ? $data->content : old('content') }}</textarea>
+        <textarea name="content">   
+            @if ($is_edit && $data->content)
+{!! $data->content !!}
+@endif    
+</textarea>
     </div>
 
 
@@ -49,6 +59,7 @@
             @endforeach
         </select>
     </div>
+    <input type="hidden" name="user_id" value="">
 
     <button type="submit" class="btn form-control {{ $is_edit ? 'btn-warning' : 'btn-primary' }}">
         {{ $is_edit ? 'Lưu' : 'Thêm mới' }}

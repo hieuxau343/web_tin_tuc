@@ -33,16 +33,17 @@ class AdvertisementController extends Controller
     {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
+
             // Tạo tên ảnh ngẫu nhiên
             $imageName = time() . '_' . $image->getClientOriginalName();
-            // Di chuyển ảnh vào thư mục 'images' trong public
-            $image->move(public_path('images'), $imageName);
+
+            $path = $image->move(public_path('storage/photos/19/advertisement'), $imageName);
 
         }
 
 
         // Tạo mới quảng cáo
-        Advertisement::create([
+        $create = Advertisement::create([
             'title' => strip_tags($request->title),
             'image' => $imageName,  // Đảm bảo giá trị này hợp lệ
             'link' => strip_tags($request->link),
@@ -51,8 +52,16 @@ class AdvertisementController extends Controller
             'status' => $request->status
         ]);
 
-        // Sau khi lưu thành công, chuyển hướng về danh sách quảng cáo
+
+        if ($create) {
+            flash()->success("Thêm quảng cáo thành công");
+            return redirect()->route('advertisement.index');
+
+        }
+        flash()->error("Thêm quảng cáo thất bại");
+
         return redirect()->route('advertisement.index');
+
     }
 
     /**
@@ -86,17 +95,16 @@ class AdvertisementController extends Controller
             // Tạo tên ảnh ngẫu nhiên
             $imageName = time() . '_' . $image->getClientOriginalName();
             // Di chuyển ảnh vào thư mục 'images' trong public
-            $image->move(public_path('images'), $imageName);
-
+            $image->move(public_path('storage/photos/19/advertisement'), $imageName);
         } else {
             $imageName = $adv->image;
         }
 
 
         $isUpdated = $adv->update([
-            'title' => $request->title,
+            'title' => strip_tags($request->title),
             'image' => $imageName,
-            'link' => $request->link,
+            'link' => strip_tags($request->link),
             'updated_at' => \Carbon\Carbon::now(),
             'status' => $request->status
         ]);
@@ -105,6 +113,8 @@ class AdvertisementController extends Controller
             return redirect()->route('advertisement.index');
         } else
             flash()->error("Cập nhật thất bại");
+        return redirect()->route('advertisement.index');
+
     }
 
     /**
@@ -114,9 +124,9 @@ class AdvertisementController extends Controller
     {
         $deleted = Advertisement::destroy($id);
         if ($deleted) {
-            flash()->success("Xóa thành công");
+            return response()->json(['success' => true, 'message' => 'Xóa quảng cáo thành công.']);
         } else {
-            flash()->error("Xóa thất bại");
+            return response()->json(['success' => false, 'message' => 'Xóa quảng cáo thất bại.'], 500);
         }
     }
 }

@@ -6,31 +6,49 @@
 
 
 
+
 @section('form_content')
 
     <div class="mb-3">
         <h3 for="adv-title" class="form-label">Tiêu đề</h3>
-        <textarea class="form-control" id="adv-title" name="title">{{ $is_edit ? $data->title : old('title') }}</textarea>
+        <textarea name="title">
+@if ($is_edit && $data->title)
+{{ $data->title }}
+@endif
+</textarea>
     </div>
+
 
     <div class="mb-3">
         <h3 for="image" class="form-label">Hình ảnh</h3>
         <input type="file" class="form-control" id="image" name="image" accept="image/*">
+
         <!-- Hiển thị ảnh hiện tại khi chỉnh sửa -->
         @if ($is_edit && $data->image)
-            <img id="preview" src="{{ asset('images/' . $data->image) }}" alt="Xem trước hình ảnh"
-                style="max-width: 20%; margin-top: 10px;">
-            <button id="clearPreview" type="button" style="display: block; margin-top: 10px;">Xóa ảnh</button>
+            <div id="previewContainer" style="margin-top: 10px;">
+                <img id="preview" src="{{ asset('storage/photos/19/advertisement/' . $data->image) }}"
+                    alt="Xem trước hình ảnh" style="max-width: 20%; display: block;">
+                <button id="clearPreview" type="button" class="btn btn-danger btn-sm mt-2">Xóa ảnh</button>
+            </div>
         @else
-            <img id="preview" src="#" alt="Xem trước hình ảnh"
-                style="display: none; max-width: 20%; margin-top: 10px;">
+            <div id="previewContainer" style="margin-top: 10px; display: none;">
+                <img id="preview" src="#" alt="Xem trước hình ảnh" style="max-width: 20%; display: none;">
+                <button id="clearPreview" type="button" class="btn btn-danger btn-sm mt-2">Xóa ảnh</button>
+            </div>
         @endif
     </div>
 
+
     <div class="mb-3">
         <h3 for="adv-link" class="form-label">Link</h3>
-        <textarea class="form-control" id="adv-link" name="link">{{ $is_edit ? $data->link : old('link') }}</textarea>
+        <textarea name="link">
+@if ($is_edit && $data->link)
+{!! $data->link !!}
+@endif
+</textarea>
+
     </div>
+
 
     <div class="mb-3">
         <h3 for="adv-status" class="form-label">Tình Trạng</h3>
@@ -40,23 +58,8 @@
         </select>
     </div>
 
-    <button type="submit" class="btn form-control {{ $is_edit ? 'btn-warning' : 'btn-primary' }}">
-        {{ $is_edit ? 'Lưu' : 'Thêm mới' }}
-    </button>
+    <input type="submit" class="btn form-control {{ $is_edit ? 'btn-warning' : 'btn-primary' }}">
+    {{ $is_edit ? 'Lưu' : 'Thêm mới' }}
+    </input>
 
-@endsection
-
-@section('js-custom')
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#adv-title'))
-            .catch(error => {
-                console.log(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#adv-link'))
-            .catch(error => {
-                console.log(error);
-            });
-    </script>
 @endsection
