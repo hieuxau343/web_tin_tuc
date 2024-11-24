@@ -12,24 +12,35 @@ use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthenticateMiddleware;
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(AuthenticateMiddleware::class);
-Route::resource('category', CategoryController::class);
 
 
-Route::resource('account', AccountController::class);
-
-Route::resource('advertisement', AdvertisementController::class);
-
-Route::get("admin", [AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class); // Thêm middleware 'guest' để chỉ cho phép người dùng chưa đăng nhập truy cập trang này.
+Route::get("admin", [AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class);
 Route::post("login", [AuthController::class, 'login'])->name('auth.login');
 
-Route::resource('post', PostController::class);
 
-Route::post('upload_image', [PostController::class, 'uploadImage'])->name('upload');
 
 Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
+
+Route::prefix('admin')->middleware(AuthenticateMiddleware::class)->group(function () {
+    // Trang dashboard
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // Route của category
+    Route::resource('category', CategoryController::class);
+
+    // Route của account
+    Route::resource('account', AccountController::class);
+
+    // Route của advertisement
+    Route::resource('advertisement', AdvertisementController::class);
+
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+
+    // Route của post
+    Route::resource('post', PostController::class);
+});

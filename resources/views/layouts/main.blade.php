@@ -102,6 +102,17 @@
             z-index: 0;
         }
 
+        td {
+            white-space: nowrap;
+            /* Không cho phép xuống dòng */
+            overflow: hidden;
+            /* Ẩn nội dung vượt quá kích thước */
+            text-overflow: ellipsis;
+            /* Thêm dấu "..." nếu nội dung quá dài */
+            max-width: 150px;
+            /* Đặt độ rộng tối đa để áp dụng */
+        }
+
         .small-box-footer {
             background-color: rgba(0, 0, 0, .1);
             color: rgba(255, 255, 255, .8);
@@ -113,18 +124,12 @@
             z-index: 10;
         }
 
-        table {
-            table-layout: fixed;
-            width: 100%;
+        td * {
+            display: inline;
         }
 
-        table td {
-            overflow: hidden;
-            /* Ẩn phần văn bản thừa */
-            text-overflow: ellipsis;
-            /* Thêm "..." khi văn bản quá dài */
-            white-space: nowrap;
-            /* Ngăn văn bản xuống dòng */
+        p {
+            display: inline;
         }
     </style>
     @include('layouts.sidebar')
@@ -136,7 +141,8 @@
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h3>@yield('name_page')</h3>
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a class="text-primary" href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-primary" href="{{ route('dashboard.index') }}">Home</a>
+                    </li>
                     <li class="breadcrumb-item">Admin</li>
                 </ol>
             </div>

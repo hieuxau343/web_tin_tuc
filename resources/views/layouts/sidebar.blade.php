@@ -2,7 +2,7 @@
 
     <div id='sidebar'>
         <a href="" class='brand-link a-primary'>
-            <img src="{{ asset('images/AdminLTELogo.png') }}" alt="">
+            <img src="{{ asset('storage/photos/19/AdminLTELogo.png') }}" alt="">
             <span>Admin</span>
         </a>
         <hr>

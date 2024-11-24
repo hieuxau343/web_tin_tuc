@@ -1,19 +1,18 @@
 @extends('layouts.main')
 @section('name_page', 'Tin tức')
 @section('content')
-    <table class="table " style="min-height: 204px">
+    <table class="table table-striped table-bordered text-center" style="min-height: 204px">
         <thead>
             <tr>
                 <th scope="col" style="width:40px">#</th>
                 <th scope="col">Tiêu đề</th>
-                <th scope="col">Slug</th>
                 <th scope="col">Hình ảnh</th>
                 <th scope="col">Nội dung</th>
                 <th scope="col">Status</th>
                 <th style="width:100px" scope="col">Ngày tạo</th>
                 <th style="width:150px" scope="col">Ngày cập nhật</th>
                 <th style="width:150px" scope="col">Tên danh mục</th>
-                <th scope="col" colspan="2"><a href="{{ route('post.create') }}" class='text-primary'>Thêm</a></th>
+                <th scope="col" colspan="1"><a href="{{ route('post.create') }}" class='text-primary'>Thêm</a></th>
             </tr>
         </thead>
         <tbody>
@@ -21,18 +20,20 @@
                 <tr id="row-{{ $post->id }}">
                     <th scope="row">{{ ($posts->currentPage() - 1) * $posts->perPage() + $index + 1 }}</th>
                     <td class="postName">{!! $post->title !!}</td>
-                    <td class="postSlug">{{ $post->slug }}</td>
                     <td class="ellipsis">
-                        <img src="" alt="">
-                        {{ $post->image }}
+                        <img style="width:90%;height:90%" src="{{ asset('storage/photos/19/post/' . $post->image) }}"
+                            alt="">
+
                     </td>
-                    <td>{{ $post->content }}</td>
+                    <td>{!! $post->content !!}</td>
                     <td>{{ $post->status }}</td>
                     <td class="postCreate">{{ $post->formatted_created_at }}</td>
                     <td class="postUpdate">{{ $post->formatted_updated_at }}</td>
                     <td class="postCategoryName text-danger">{{ $post->category->name }}</td>
-                    <td><a href="#" class='text-warning btn-edit' data-id="{{ $post->id }}">Sửa</a></td>
-                    <td><a href="#" class='text-danger btn-delete' data-id="{{ $post->id }}">Xóa</a></td>
+                    <td><a href="{{ route('post.edit', $post->id) }}" class='text-warning'
+                            data-id="{{ $post->id }}">Sửa</a>
+                        <a href="#" class='text-danger btn-delete' data-id="{{ $post->id }}">Xóa</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

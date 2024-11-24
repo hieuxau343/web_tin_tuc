@@ -23,7 +23,7 @@
         <h3 for="image" class="form-label">Hình ảnh</h3>
         <input type="file" class="form-control" id="image" name="image" accept="image/*">
         @if ($is_edit && $data->image)
-            <img id="preview" src="{{ asset('storage/photos' . $data->image) }}" alt="Xem trước hình ảnh"
+            <img id="preview" src="{{ asset('storage/photos/19/post/' . $data->image) }}" alt="Xem trước hình ảnh"
                 style="max-width: 20%; margin-top: 10px;">
             <button id="clearPreview" type="button" style="display: block; margin-top: 10px;">Xóa ảnh</button>
         @else
@@ -55,11 +55,13 @@
         <h3 for="post-category" class="form-label">Tên danh mục</h3>
         <select name="category" id="post-category" class="form-control">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}" @if ($is_edit && $data->category_id == $category->id) selected @endif>
+                    {{ $category->name }}
+                </option>
             @endforeach
         </select>
     </div>
-    <input type="hidden" name="user_id" value="">
+    <input type="hidden" name="user_id" value="{{ $currentUser->id }}">
 
     <button type="submit" class="btn form-control {{ $is_edit ? 'btn-warning' : 'btn-primary' }}">
         {{ $is_edit ? 'Lưu' : 'Thêm mới' }}

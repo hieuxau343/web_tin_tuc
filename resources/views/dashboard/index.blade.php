@@ -6,14 +6,14 @@
             <div class="small-box bg-info ">
                 <div class="d-flex align-items-center justify-content-between ">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{ $categories }}</h3>
                         <h4>DANH MỤC</h4>
                     </div>
                     <div class="icon">
                         <i class="fa-solid fa-bag-shopping  mx-3" style="font-size:60px"></i>
                     </div>
                 </div>
-                <a href="ds_danhmuc.php" class="small-box-footer text-center">Chi tiết <i
+                <a href="{{ route('category.index') }}" class="small-box-footer text-center">Chi tiết <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
 
@@ -22,14 +22,14 @@
             <div class="small-box bg-success ">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="inner">
-                        <h3>53</h3>
+                        <h3>{{ $posts }}</h3>
                         <h4>Tin tức</h4>
                     </div>
                     <div class="icon">
                         <i class="fa-solid fa-bag-shopping  mx-3" style="font-size:60px"></i>
                     </div>
                 </div>
-                <a href="ds_danhmuc.php" class="small-box-footer text-center">Chi tiết <i
+                <a href="{{ route('post.index') }}" class="small-box-footer text-center">Chi tiết <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
 
@@ -38,14 +38,14 @@
             <div class="small-box bg-warning ">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ $users }}</h3>
                         <h4>Thành viên</h4>
                     </div>
                     <div class="icon">
                         <i class="fa-solid fa-bag-shopping  mx-3" style="font-size:60px"></i>
                     </div>
                 </div>
-                <a href="ds_danhmuc.php" class="small-box-footer text-center">Chi tiết <i
+                <a href="{{ route('account.index') }}" class="small-box-footer text-center">Chi tiết <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
 

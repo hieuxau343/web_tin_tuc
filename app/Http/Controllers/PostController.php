@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $limit = 4;
-        $posts = Post::with('category')->paginate($limit);
+        $posts = Post::paginate($limit);
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -36,20 +36,27 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            // Tạo tên ảnh ngẫu nhiên
-            $imageName = time() . '_' . $image->getClientOriginalName();
+            // Lấy tên gốc của ảnh
+            $imageName = $image->getClientOriginalName();
 
-            $path = $image->move(public_path('storage/photos/19/post'), $imageName);
+            $uploadPath = public_path('storage/photos/19/post');
 
+            if (!file_exists($uploadPath . '/' . $imageName)) {
+                $image->move($uploadPath, $imageName);
+
+            }
         }
+
         $create = Post::create([
             'title' => ($request->title),
+            'slug' => Str::slug($request->title),
             'image' => $imageName,
-            'content' => ($request->link),
+            'content' => ($request->content),
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
             'status' => $request->status,
-            'category_id' => $request->category
+            'category_id' => $request->category,
+            'user_id' => $request->user_id
 
         ]);
 
@@ -81,7 +88,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::get();
+        return view('post.add', ['is_edit' => true, 'data' => $post, 'categories' => $categories]);
+
     }
 
     /**
@@ -97,10 +107,13 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
-    public function uploadImage(Request $request)
-    {
+        $deleted = Post::destroy($id);
 
+        if ($deleted) {
+            return response()->json(['success' => true, 'message' => 'Xóa quảng cáo thành công.']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Xóa quảng cáo thất bại.'], 500);
+        }
     }
+
 }

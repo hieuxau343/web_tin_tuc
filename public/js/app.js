@@ -1,7 +1,10 @@
 $(function () {
     const pathname = window.location.pathname;
     const pathSegments = pathname.split("/");
-    const entity = pathSegments[1];
+    const entity = pathSegments[2];
+    const adminPrefix = "/admin"; // Lưu trữ tiền tố "admin"
+
+    console.log(entity);
 
     // NUT SUA
     $(".btn-edit").click(function (event) {
@@ -9,7 +12,7 @@ $(function () {
         var id = $(this).data("id");
 
         sendAjaxRequest(
-            `/${entity}/${id}/edit`,
+            `${adminPrefix}/${entity}/${id}/edit`,
             "GET",
             {},
             function (response) {
@@ -28,7 +31,7 @@ $(function () {
         var formData = getFormData(entity);
         console.log(formData);
         sendAjaxRequest(
-            `/${entity}/${id}`,
+            `${adminPrefix}/${entity}/${id}`,
             "PUT",
             formData,
             function (response) {
@@ -58,7 +61,7 @@ $(function () {
     $(".btn-confirm").click(function () {
         var id = $(this).attr("data-id");
         sendAjaxRequest(
-            `/${entity}/` + id,
+            `${adminPrefix}/${entity}/` + id,
             "DELETE",
             null,
             function (response) {

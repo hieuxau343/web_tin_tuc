@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('name_page', 'Danh mục')
 @section('content')
-    <table class="table" style="min-height: 204px">
+    <table class="table table-striped table-bordered text-center" style="min-height: 204px">
         <thead>
             <tr>
                 <th scope="col">#</th>
