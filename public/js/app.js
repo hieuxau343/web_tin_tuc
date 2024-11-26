@@ -36,15 +36,12 @@ $(function () {
             formData,
             function (response) {
                 $("#editModal").modal("hide");
-                alert("Danh mục đã được cập nhật thành công!");
                 console.log(response);
                 updateRow(entity, response);
+                toastr.success("Cập nhật thành công");
             },
             function (error) {
-                console.log("Lỗi khi cập nhật danh mục:", error);
-                alert("Cập nhật thất bại, vui lòng thử lại.");
-                console.log(error.responseText); // In ra nội dung lỗi từ server
-                console.log(error.status);
+                toastr.error("Cập nhật thất bại");
             }
         );
     });
@@ -67,13 +64,10 @@ $(function () {
             function (response) {
                 $("#confirmationModal").modal("hide");
                 $("#row-" + id).remove();
+                toastr.success("Xóa thành công");
             },
             function (xhr) {
-                // Xử lý lỗi khi có lỗi trong AJAX
-                console.log("Lỗi khi cập nhật danh mục:", xhr);
-                alert("Cập nhật thất bại, vui lòng thử lại.");
-                console.log(xhr.responseText); // In ra nội dung lỗi từ server
-                console.log(xhr.status); // In ra mã trạng thái HTTP
+                toastr.error("Xóa thất bại");
             }
         );
     });
@@ -86,7 +80,7 @@ function getFormData(entity) {
     if (entity === "category") {
         formData.name = $("#editName").val();
         formData.slug = $("#editSlug").val();
-    } else if (entity === "account") {
+    } else if (entity === "user") {
         formData.name = $("#editName").val();
         formData.phone = $("#editPhone").val();
         formData.email = $("#editEmail").val();
@@ -104,13 +98,13 @@ function updateRow(entity, response) {
         row.find(".categoryName").text(response.name);
         row.find(".categorySlug").text(response.slug);
         row.find(".categoryUpdate").text(response.updated_at);
-    } else if (entity === "account") {
-        row.find(".accountName").text(response.name);
-        row.find(".accountPhone").text(response.phone);
-        row.find(".accountEmail").text(response.email);
-        row.find(".accountRole").text(response.role);
-        row.find(".accountGender").text(response.gender);
-        row.find(".accountBirth").text(response.birthday);
+    } else if (entity === "user") {
+        row.find(".userName").text(response.name);
+        row.find(".userPhone").text(response.phone);
+        row.find(".userEmail").text(response.email);
+        row.find(".userRole").text(response.role);
+        row.find(".userGender").text(response.gender);
+        row.find(".userBirth").text(response.birthday);
     }
 }
 
@@ -119,7 +113,7 @@ function fillModel(entity, response) {
         $("#editName").val(response.name);
         $("#editSlug").val(response.slug);
         $("#editId").val(response.id);
-    } else if (entity === "account") {
+    } else if (entity === "user") {
         $("#editName").val(response.fullname);
         $("#editPhone").val(response.phone);
         $("#editEmail").val(response.email);

@@ -45,7 +45,7 @@
                         <i class="fa-solid fa-bag-shopping  mx-3" style="font-size:60px"></i>
                     </div>
                 </div>
-                <a href="{{ route('account.index') }}" class="small-box-footer text-center">Chi tiết <i
+                <a href="{{ route('user.index') }}" class="small-box-footer text-center">Chi tiết <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
 

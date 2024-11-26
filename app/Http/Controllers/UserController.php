@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
+use App\Models\user;
 use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,14 +13,14 @@ class AccountController extends Controller
     public function index()
     {
         $limit = 4;
-        $accounts = Account::paginate($limit);
-        return view('account.index', ['accounts' => $accounts]);
+        $users = User::paginate($limit);
+        return view('user.index', ['users' => $users]);
     }
 
 
     public function create()
     {
-        return view('account.add');
+        return view('user.add', ['is_edit' => false]);
     }
 
     /**
@@ -28,7 +28,7 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        Account::create([
+        User::create([
             'fullname' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -39,7 +39,7 @@ class AccountController extends Controller
             'password' => $request->password
         ]);
 
-        return redirect()->route('account.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -55,9 +55,9 @@ class AccountController extends Controller
      */
     public function edit(string $id)
     {
-        $account = Account::find($id);
+        $user = User::find($id);
 
-        return response()->json($account);
+        return response()->json($user);
     }
 
     /**
@@ -65,8 +65,8 @@ class AccountController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $account = Account::findOrFail($id);
-        $account->update([
+        $user = User::findOrFail($id);
+        $user->update([
             'fullname' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -76,13 +76,13 @@ class AccountController extends Controller
         ]);
 
         return response()->json([
-            'id' => $account->id,
-            'name' => $account->fullname,
-            'phone' => $account->phone,
-            'email' => $account->email,
-            'gender' => $account->gender,
-            'birthday' => $account->birthday,
-            'role' => $account->role,
+            'id' => $user->id,
+            'name' => $user->fullname,
+            'phone' => $user->phone,
+            'email' => $user->email,
+            'gender' => $user->gender,
+            'birthday' => $user->birthday,
+            'role' => $user->role,
         ]);
     }
 
@@ -91,12 +91,12 @@ class AccountController extends Controller
      */
     public function destroy(string $id)
     {
-        $deleted = Account::destroy($id);
+        $deleted = user::destroy($id);
 
         if ($deleted) {
-            return response()->json(['success' => true, 'message' => 'Account deleted successfully.']);
+            return response()->json(['success' => true, 'message' => 'user deleted successfully.']);
         } else {
-            return response()->json(['success' => false, 'message' => 'Account deletion failed.'], 500);
+            return response()->json(['success' => false, 'message' => 'user deletion failed.'], 500);
         }
     }
 }

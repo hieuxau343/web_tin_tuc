@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthenticateMiddleware;
@@ -33,7 +34,7 @@ Route::prefix('admin')->middleware(AuthenticateMiddleware::class)->group(functio
     Route::resource('category', CategoryController::class);
 
     // Route của account
-    Route::resource('account', AccountController::class);
+    Route::resource('user', UserController::class);
 
     // Route của advertisement
     Route::resource('advertisement', AdvertisementController::class);

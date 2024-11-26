@@ -31,9 +31,12 @@ class AuthController extends Controller
         // Đã mã hóa sau khi qua attempt
         // Đúng thì vào dashboard có hiện thông báo flashcard
         if (Auth::attempt($crdentials)) {
-            flash()->addSuccess("Đăng nhập thành công");
+            if (Auth::user()->role === 'ADMIN') {
+                flash()->addSuccess("Đăng nhập thành công");
 
-            return redirect()->route('dashboard.index');
+                return redirect()->route('dashboard.index');
+            }
+
 
         } else {  //Ko đúng thì quay vẫn ở lại trang đăng nhập và hiên thông báo
 

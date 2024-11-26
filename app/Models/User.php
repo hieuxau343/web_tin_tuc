@@ -51,4 +51,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d-m-Y');
+    }
+
+    public function getFormattedUpdatedAtAttribute()
+    {
+        return $this->updated_at->format('d-m-Y');
+    }
 }

@@ -7,7 +7,9 @@
         </a>
         <hr>
         <div class='sidebar-content'>
-            <img src="" alt="">
+            <img src="{{ $currentUser->image ? asset('storage/photos/19/user/' . $currentUser->image) : asset('storage/photos/19/avatar-trang-4.jpg') }}"
+                class="avatar" />
+
             <span>{{ $currentUser->fullname }}</span>
             <hr>
             <ul class='nav nav-pills nav-sidebar flex-column'>
@@ -33,7 +35,7 @@
                     </a>
                 </li>
                 <li class='nav-item has-treeview mt-2'>
-                    <a href="{{ route('account.index') }}"
+                    <a href="{{ route('user.index') }}"
                         class='nav-link a-primary @if (request()->is('members*')) active @endif'>
                         <i class='nav-icon fas fa-tachometer-alt'></i>
                         <span class='mb-0'>Thành viên</span>

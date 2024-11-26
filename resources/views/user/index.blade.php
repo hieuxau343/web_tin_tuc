@@ -11,21 +11,20 @@
                 <th scope="col">Giới tính</th>
                 <th scope="col">Ngày sinh</th>
                 <th scope="col">Quyền</th>
-                <th scope="col" colspan="2"><a href="{{ route('account.create') }}" class='text-primary'>Thêm</a></th>
+                <th scope="col" colspan="2"><a href="{{ route('user.create') }}" class='text-primary'>Thêm</a></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($accounts as $index => $account)
-                <tr id="row-{{ $account->id }}">
-                    <th scope="row">{{ ($accounts->currentPage() - 1) * $accounts->perPage() + $index + 1 }}</th>
-                    <td class="accountName">{{ $account->fullname }}</td>
-                    <td class="accountEmail">{{ $account->email }}</td>
-                    <td class="accountPhone">{{ $account->phone }}</td>
-                    <td class="accountGender">{{ $account->gender }}</td>
-                    <td class="accountBirth">{{ $account->birthday }}</td>
-                    <td class="accountRole">{{ $account->role }}</td>
-                    <td><a href="#" class='text-warning btn-edit' data-id="{{ $account->id }}">Sửa</a></td>
-                    <td><a href="#" class='text-danger btn-delete' data-id="{{ $account->id }}">Xóa</a></td>
+            @foreach ($users as $index => $user)
+                <tr id="row-{{ $user->id }}">
+                    <th scope="row">{{ ($users->currentPage() - 1) * $users->perPage() + $index + 1 }}</th>
+                    <td class="userName">{{ $user->fullname }}</td>
+                    <td class="userEmail">{{ $user->email }}</td>
+                    <td class="userPhone">{{ $user->phone }}</td>
+                    <td class="userGender">{{ $user->gender }}</td>
+                    <td class="userBirth">{{ date('d/m/Y', strtotime($user->birthday)) }}</td>
+                    <td class="userRole">{{ $user->role }}</td>
+                    <td><a href="#" class='text-danger btn-delete' data-id="{{ $user->id }}">Xóa</a></td>
                 </tr>
             @endforeach
         </tbody>
@@ -35,25 +34,25 @@
     <nav aria-label="...">
         <ul class="pagination justify-content-end">
             <!-- Liên kết "Previous" -->
-            @if ($accounts->currentPage() > 1)
+            @if ($users->currentPage() > 1)
                 <li class="page-item">
-                    <a class="page-link bg-warning" href="{{ $accounts->previousPageUrl() }}">
+                    <a class="page-link bg-warning" href="{{ $users->previousPageUrl() }}">
                         Previous
                     </a>
                 </li>
             @endif
 
             <!-- Liên kết các số trang -->
-            @foreach ($accounts->getUrlRange(1, $accounts->lastPage()) as $page => $url)
-                <li class="page-item {{ $page == $accounts->currentPage() ? 'active' : '' }}">
+            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                <li class="page-item {{ $page == $users->currentPage() ? 'active' : '' }}">
                     <a class="page-link text-black" href="{{ $url }}">{{ $page }}</a>
                 </li>
             @endforeach
 
             <!-- Liên kết "Next" -->
-            @if ($accounts->hasMorePages())
+            @if ($users->hasMorePages())
                 <li class="page-item">
-                    <a class="page-link bg-success" href="{{ $accounts->nextPageUrl() }}">
+                    <a class="page-link bg-success" href="{{ $users->nextPageUrl() }}">
                         Next
                     </a>
                 </li>
