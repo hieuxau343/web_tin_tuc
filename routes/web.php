@@ -15,8 +15,22 @@ use App\Http\Middleware\AuthenticateMiddleware;
 
 
 
-Route::get("admin", [AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class);
-Route::post("login", [AuthController::class, 'login'])->name('auth.login');
+// Route::get("post", [AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class);
+// Route::get("login", [AuthController::class, 'index'])->name('auth.login');
+// // Route::post("", [AuthController::class, 'login'])->name('auth.login');
+
+// Route để hiển thị form đăng nhập
+Route::get('login', [AuthController::class, 'index'])->name('auth.login');
+
+// Route để xử lý đăng nhập
+Route::post('login', [AuthController::class, 'login'])->name('auth.login.submit');
+
+// Route để hiển thị form đăng ký
+Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('auth.register');
+
+// Route để xử lý đăng ký
+Route::post('register', [AuthController::class, 'register'])->name('auth.register.submit');
+
 
 
 
