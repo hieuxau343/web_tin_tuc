@@ -1,0 +1,49 @@
+
+.info-user{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+}
+.list-group{
+    position: fixed;
+    top: 120px;
+    left: 100px;
+    z-index: 1;
+}
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent; /* Phần trên trong suốt */
+    border-bottom: 5px solid transparent; /* Phần dưới trong suốt */
+    border-left: 10px solid #fff; /* Mũi tên màu đen */
+    display: inline-block;
+    
+}
+.menu li{
+    cursor: pointer; /* Hiển thị biểu tượng con trỏ khi di chuột */
+    transition: 0.3s ease;
+
+
+}
+li:not(:first-child) {
+    font-size: 20px;
+}
+    i{
+    margin-right: 10px;
+}
+
+
+.menu li:hover{
+    background-color: #06e6e6;
+    border-radius: 5px;
+}
+.sidebar-content ul li a{
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+    align-items: center;
+
+}

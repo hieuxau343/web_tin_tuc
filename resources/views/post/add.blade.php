@@ -10,11 +10,10 @@
 
     <div class="mb-3">
         <h3 for="post-title" class="form-label">Tiêu đề</h3>
-        <textarea name="title">
-            @if ($is_edit && $data->title)
-{!! $data->title !!}
-@endif    
-</textarea>
+        <input type="text" name="title" class="form-control"
+            value="  @if ($is_edit && $data->title) {{ $data->title }} @endif">
+
+        </input>
 
     </div>
 

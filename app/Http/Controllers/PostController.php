@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Cocur\Slugify\Slugify;
+
 class PostController extends Controller
 {
     /**
@@ -46,10 +48,11 @@ class PostController extends Controller
 
             }
         }
+        $cleanTitle = strip_tags($request->title);
 
         $create = Post::create([
             'title' => ($request->title),
-            'slug' => Str::slug($request->title),
+            'slug' => Str::slug($cleanTitle),
             'image' => $imageName,
             'content' => ($request->content),
             'created_at' => \Carbon\Carbon::now(),
@@ -99,7 +102,56 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+
+        $cleanTitle = convert_vi_to_en($request->title);
+        $slug = Str::slug($cleanTitle);
+
+
+        $post = Post::findOrFail($id);
+        $imageName = $post->image;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            // Lấy tên gốc của ảnh
+            $imageName = $image->getClientOriginalName();
+
+            $uploadPath = public_path('storage/photos/19/post');
+
+            if (!file_exists($uploadPath . '/' . $imageName)) {
+                $image->move($uploadPath, $imageName);
+
+            }
+        }
+
+
+
+
+
+
+
+        $update = $post->update([
+            'title' => ($request->title),
+            'slug' => $slug,
+            'image' => $imageName,
+            'content' => ($request->content),
+            'updated_at' => \Carbon\Carbon::now(),
+            'status' => $request->status,
+            'category_id' => $request->category,
+            'user_id' => $request->user_id
+        ]);
+        if ($update) {
+            flash()->success("Cập nhật tin tức thành công");
+            return redirect()->route('post.index');
+
+        } else {
+            flash()->error("Cập nhật tin tức thất bại");
+
+            return redirect()->route('post.index');
+        }
+
+
     }
 
     /**

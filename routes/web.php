@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\DashboardController;
 
 use App\Http\Controllers\ImageController;
@@ -18,7 +19,7 @@ use App\Http\Middleware\AuthenticateMiddleware;
 Route::get("admin", [AuthController::class, 'index'])->name('auth.admin')->middleware(LoginMiddleware::class);
 Route::post("login", [AuthController::class, 'login'])->name('auth.login');
 
-
+Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

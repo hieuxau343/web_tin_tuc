@@ -10,8 +10,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     {{-- toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -33,6 +36,9 @@
             padding: 13px 0px;
             background-color: hsl(210 11% 15%);
             color: hsl(none 0% 100%);
+            transition: 0.6s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
         }
 
         img {
@@ -138,14 +144,16 @@
         .avatar {
             border-radius: 50%
         }
+
+        #footer {}
     </style>
     @include('layouts.sidebar')
     @include('layouts.header')
     <div
-        style="width: calc(100% - 200px); float: right; padding: 10px 0px; height: 550px; background-color: hsl(220 29% 97%)">
+        style="width: calc(100% - 200px);margin-left:200px; padding: 10px 0px; min-height:86vh; background-color: hsl(220 29% 97%)">
         <div class="container-fluid">
 
-            <div class="d-flex align-items-center justify-content-between mb-3">
+            <div style="clear: both" class="d-flex align-items-center justify-content-between mb-3 ">
                 <h3>@yield('name_page')</h3>
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a class="text-primary" href="{{ route('dashboard.index') }}">Home</a>
@@ -158,10 +166,10 @@
         </div>
     </div>
     @include('layouts.footer')
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     {{--  toastr --}}
