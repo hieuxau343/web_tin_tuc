@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->updated_at->format('d-m-Y');
     }
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

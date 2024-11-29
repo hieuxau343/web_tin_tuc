@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
@@ -16,44 +18,7 @@ class AuthController extends Controller
 
     }
 
-    // public function index()
-    // {
 
-    //     return view('backend.auth.login&register');
-    // }
-    // public function login(AuthRequest $request)
-    // {
-    //     $crdentials = [
-    //         'email' => $request->input('email'),
-    //         'password' => $request->input('password')
-
-    //     ];
-    //     // Đã mã hóa sau khi qua attempt
-    //     // Đúng thì vào dashboard có hiện thông báo flashcard
-    //     if (Auth::attempt($crdentials)) {
-    //         if (Auth::user()->role === 'ADMIN') {
-    //             flash()->addSuccess("Đăng nhập thành công");
-
-    //             return redirect()->route('dashboard.index');
-    //         }
-
-
-    //     } else {  //Ko đúng thì quay vẫn ở lại trang đăng nhập và hiên thông báo
-
-
-    //         flash()->addError("Email hoặc mật khẩu không chính xác");
-    //         return view('backend.auth.login&register');
-    //     }
-    // }
-
-    // public function logout(Request $request)
-    // {
-    //     Auth::logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    //     return redirect()->route('auth.admin');
-
-    // }
     public function index()
     {
         return view('backend.auth.login&register');
@@ -77,10 +42,7 @@ class AuthController extends Controller
     }
 
     // Hiển thị form đăng ký
-    public function showRegistrationForm()
-    {
-        return view('backend.auth.login&register');
-    }
+
 
     // Xử lý đăng ký
     public function register(Request $request)

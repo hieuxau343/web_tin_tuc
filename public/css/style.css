@@ -89,7 +89,7 @@ ul#main-menu li:first-child a {
   padding-top: 20px;
 }
 .box.feature-post ul li {
-  flex: 360px 0 1;
+  flex: 360px 0 0;
 }
 .box.feature-post .post-thumb {
   display: block;
@@ -172,7 +172,13 @@ ul.list-post li .post-excerpt {
   font-size: 13px;
   color: #adadad;
   margin-bottom: 0;
+  display: -webkit-box;       /* Thiết lập để hỗ trợ nhiều dòng */
+  -webkit-line-clamp: 3;      /* Giới hạn số dòng (ở đây là 3 dòng) */
+  -webkit-box-orient: vertical;  /* Đảm bảo văn bản sẽ được cắt theo chiều dọc */
+  overflow: hidden;           /* Ẩn văn bản vượt quá giới hạn */
+  text-overflow: ellipsis;    /* Hiển thị dấu '...' khi cắt ngắn văn bản */
 }
+
 /* Sidebar  */
 #side-bar a.ads {
   display: block;

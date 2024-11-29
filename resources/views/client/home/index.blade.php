@@ -11,11 +11,11 @@
 
                     @foreach ($specials as $index => $item)
                         <li>
-                            <a href="" class="post-thumb">
+                            <a href="{{ route('client-post.show', $item->id) }}" class="post-thumb">
                                 <img style="height: 250px" class="img-fluid"
                                     src="{{ asset('storage/photos/19/post/' . $item->image) }}" alt="" />
                             </a>
-                            <a href="" class="post-title">
+                            <a href="{{ route('client-post.show', ['id' => $item->id]) }}" class="post-title">
                                 {!! strip_tags($item->title) !!}
                             </a>
                         </li>
@@ -35,127 +35,32 @@
                 </div>
                 <div class="box-body">
                     <ul class="list-post">
-                        <li class="">
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-1.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
+                        @foreach ($posts as $index => $post)
+                            <li class="">
+                                <a href="" class="post-thumb">
+                                    <img style="width:263px;height:176px"
+                                        src="{{ asset('storage/photos/19/post/' . $post->image) }}" alt="" />
                                 </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
+                                <div class="more-info">
+                                    <a href="" class="post-title">{{ $post->title }}
+                                    </a>
+                                    <div class="post-published">
+                                        <a href="" class="post-author">{{ $post->user->fullname }} </a>
+                                        <span class="post-date">{{ $post->formatted_created_at }}</span>
+                                    </div>
+                                    <p class="post-excerpt">
+                                        {{ strip_tags(html_entity_decode($post->content)) }}
+                                    </p>
                                 </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-2.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
-                                </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
-                                </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-3.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
-                                </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
-                                </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-4.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
-                                </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
-                                </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-5.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
-                                </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
-                                </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" class="post-thumb">
-                                <img src="assets/images/pic-6.png" alt="" />
-                            </a>
-                            <div class="more-info">
-                                <a href="" class="post-title">Bạn có phải là một người phụ nữ có phong cách?
-                                </a>
-                                <div class="post-published">
-                                    <a href="" class="post-author">123qjk</a>
-                                    <span class="post-date">20/11/2020</span>
-                                </div>
-                                <p class="post-excerpt">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                                    commodo viverra maecenas accumsan lacus vel facilisis.
-                                </p>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
         </div>
         <div id="side-bar">
             <a href="" class="ads">
-                <img src="assets/images/ads.png" alt="" />
+                <img src="{{ asset('storage/images/earth.png') }}" alt="" />
             </a>
             <div class="box top-topic">
                 <div class="box-head">
@@ -163,30 +68,13 @@
                 </div>
                 <div class="box-body">
                     <ul class="list-topic">
-                        <li>
-                            <a href="">Thời trang<span class="num-post">20</span></a>
-                        </li>
-                        <li>
-                            <a href="">Đời Sống<span class="num-post">30</span></a>
-                        </li>
-                        <li>
-                            <a href="">Xã Hội<span class="num-post">26</span></a>
-                        </li>
-                        <li>
-                            <a href="">Bóng Đá<span class="num-post">35</span></a>
-                        </li>
-                        <li>
-                            <a href="">Điện Ảnh<span class="num-post">29</span></a>
-                        </li>
-                        <li>
-                            <a href="">Sự Kiện<span class="num-post">15</span></a>
-                        </li>
-                        <li>
-                            <a href="">Du Lịch<span class="num-post">34</span></a>
-                        </li>
-                        <li>
-                            <a href="">Nội Trợ<span class="num-post">45</span></a>
-                        </li>
+
+                        @foreach ($categories as $index => $category)
+                            <li>
+                                <a href="">{{ $category->name }}<span
+                                        class="num-post">{{ $category->posts_count }}</span></a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
