@@ -9,13 +9,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
 }
-.container {
-  width: 1170px;
-  margin: 0 auto;
-  padding: 0 15px;
-  display: flex;
-  justify-content: space-between;
-}
+
 /*========================== css header=========================  */
 #header {
   background-color: #23282d;
@@ -213,8 +207,8 @@ ul.list-topic li:hover a {
 /* FOOTER  */
 #footer {
   background-color: #2e2f30;
-  padding-top: 52px;
-  padding-bottom: 60px;
+  padding-top: 10px;
+  padding-bottom: 30px;
   color: #f6f6f6;
 }
 #footer .box .box-head h3 {

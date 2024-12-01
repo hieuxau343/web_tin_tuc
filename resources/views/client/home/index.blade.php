@@ -11,11 +11,11 @@
 
                     @foreach ($specials as $index => $item)
                         <li>
-                            <a href="{{ route('client-post.show', $item->id) }}" class="post-thumb">
+                            <a href="{{ route('client-post.show', $item->slug) }}" class="post-thumb">
                                 <img style="height: 250px" class="img-fluid"
                                     src="{{ asset('storage/photos/19/post/' . $item->image) }}" alt="" />
                             </a>
-                            <a href="{{ route('client-post.show', ['id' => $item->id]) }}" class="post-title">
+                            <a href="{{ route('client-post.show', $item->slug) }}" class="post-title">
                                 {!! strip_tags($item->title) !!}
                             </a>
                         </li>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <!-- End feature post -->
-    <div id="wrp-content" class="container">
+    <div id="wrp-content" class="container d-flex">
         <div id="content">
             <div class="box new-post">
                 <div class="box-head">
@@ -37,7 +37,7 @@
                     <ul class="list-post">
                         @foreach ($posts as $index => $post)
                             <li class="">
-                                <a href="" class="post-thumb">
+                                <a href="{{ route('client-post.show', $item->slug) }}" class="post-thumb">
                                     <img style="width:263px;height:176px"
                                         src="{{ asset('storage/photos/19/post/' . $post->image) }}" alt="" />
                                 </a>

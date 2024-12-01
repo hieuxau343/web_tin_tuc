@@ -1,12 +1,12 @@
 <div id="footer">
-    <div class="container">
+    <div class="container d-flex">
         <div class="box logo-footer">
             <div class="box-head">
                 <h3>Unitop</h3>
             </div>
-            <div class="box-body">
-                <a href="">
-                    <img src="assets/images/Logo.png" alt="" />
+            <div class="box-body" style="padding: 0">
+                <a href="{{ route('homepage') }}">
+                    <img src="{{ asset('storage/images/earth.png') }}" alt="" />
                 </a>
             </div>
         </div>
@@ -16,11 +16,9 @@
             </div>
             <div class="box-body">
                 <p>
-                    Unitop.vn là hệ thống đào tạo lập trình web online theo lộ trình
-                    từng bước. Hệ thống phát triển từ tháng 6/2017 đến nay đã có gần
-                    2.000 người theo học và đạt kết quả tốt.
-                </p>
-                <a href="http://unitop.vn">http://unitop.vn</a>
+                    Web tin tức có nhiều công dụng quan trọng trong xã hội hiện đại, đặc biệt trong việc cung cấp thông
+                    tin nhanh chóng và dễ dàng đến với đông đảo người dùng. Dưới đây là những công dụng chính của web
+                    tin tức: </p>
             </div>
         </div>
         <div class="box follow-us">

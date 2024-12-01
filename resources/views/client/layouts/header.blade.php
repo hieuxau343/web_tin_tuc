@@ -1,5 +1,5 @@
 <div id="header">
-    <div class="container justify-content align-items-center">
+    <div class=" container d-flex justify-content align-items-center">
         <a id="logo" href="">
             <img src="{{ asset('storage/images/earth.png') }}" alt="Logo" />
 
@@ -12,9 +12,12 @@
     <div class="container">
         <nav>
             <ul id="main-menu" class="d-flex">
-                <li><a href="#">Trang chủ</a></li>
+                <li><a href="{{ route('homepage') }}">Trang chủ</a></li>
                 @foreach ($categories as $index => $category)
-                    <li><a href="#">{{ $category->name }}</a></li>
+                    @if ($category->posts_count != 0)
+                        <li><a href="{{ route('client-category.show', $category->slug) }}">{{ $category->name }}</a>
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </nav>

@@ -4,6 +4,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Client\CategoryController as ClientCategoryController;
+
 use App\Http\Controllers\Client\ClientPostController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\DashboardController;
@@ -29,7 +31,9 @@ Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('a
 // Route để xử lý đăng ký
 Route::post('register', [AuthController::class, 'register'])->name('auth.register.submit');
 
-Route::get('/post/{id}', [ClientPostController::class, 'show'])->name('client-post.show');
+Route::get('post/{slug}.html', [ClientPostController::class, 'show'])->name('client-post.show');
+
+Route::get('category/{slug}.html', [ClientCategoryController::class, 'show'])->name('client-category.show');
 
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');

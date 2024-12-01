@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 
 class ClientPostController extends Controller
 {
-    public function show(string $id)
+    public function show(string $slug)
     {
-        return $id;
+        $categories = Category::withCount('posts')->get();
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        return view('client.post.show', compact('categories', 'post'));
 
     }
 }

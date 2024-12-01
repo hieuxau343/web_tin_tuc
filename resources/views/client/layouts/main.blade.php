@@ -16,6 +16,32 @@
 </head>
 
 <body>
+    <style>
+        .title1 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #292929;
+            display: block;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .post-excerpt {
+            font-size: 13px;
+            color: #adadad;
+            margin-bottom: 0;
+            display: -webkit-box;
+            /* Thiết lập để hỗ trợ nhiều dòng */
+            -webkit-line-clamp: 4;
+            /* Giới hạn số dòng (ở đây là 3 dòng) */
+            -webkit-box-orient: vertical;
+            /* Đảm bảo văn bản sẽ được cắt theo chiều dọc */
+            overflow: hidden;
+            /* Ẩn văn bản vượt quá giới hạn */
+            text-overflow: ellipsis;
+        }
+    </style>
     <div id="wrapper">
         @include('client.layouts.header')
 
