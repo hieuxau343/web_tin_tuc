@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $categories = Category::withCount('posts')->get();
         $specials = Post::latest()->take(3)->get();
-        $posts = Post::latest()->take(10)->get();
+        $posts = Post::paginate(6);
 
         return view('client.home.index', compact('categories', 'specials', 'posts'));
     }

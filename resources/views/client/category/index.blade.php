@@ -94,5 +94,9 @@
                 </ul>
             </div>
         </div>
+        <div class="pagination">
+            {{ $posts->links() }}
+        </div>
+
     </div>
 @endsection

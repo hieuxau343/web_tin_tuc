@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $categories = Category::withCount('posts')->get();
         $category = Category::where('slug', $slug)->firstOrFail();
-        $posts = $category->posts()->orderBy('created_at', 'desc')->get();
+        $posts = $category->posts()->orderBy('created_at', 'desc')->paginate(6);
         return view('client.category.index', compact('category', 'categories', 'posts'));
 
     }
