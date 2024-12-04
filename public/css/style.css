@@ -42,11 +42,7 @@ form#search button {
 form#search ::placeholder {
   color: #909090;
 }
-nav {
-  margin-top: 7px;
-  flex: 100%;
-  border-right: 10px solid #ff2d2d;
-}
+
 #main-menu {
   padding-left: 0;
   margin-bottom: 11px;
