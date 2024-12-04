@@ -48,38 +48,41 @@
             <!-- Logo và giới thiệu -->
             <div class="col-12 col-md-4 mb-4">
                 <img src="{{ asset('storage/images/white_logo.png') }}" alt="Logo" class="mb-3 footer_logo img-fluid">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                <p>Đừng bỏ lỡ tin tức quan trọng! <br>
+                    Nhận tóm tắt tin tức nổi bật, hấp dẫn nhất 24 giờ qua trên 24 News. <br>
+                    <b>Báo tiếng Việt nhiều người xem nhất</b>
+                </p>
             </div>
 
             <!-- Danh mục -->
             <div class="col-6 col-md-2 mb-4">
-                <h5 class="text-uppercase">Category</h5>
+                <h5 class="text-uppercase">Chủ đề</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-light">Business</a></li>
-                    <li><a href="#" class="text-light">Entertainment</a></li>
-                    <li><a href="#" class="text-light">Environment</a></li>
-                    <li><a href="#" class="text-light">Health</a></li>
-                    <li><a href="#" class="text-light">Technology</a></li>
+                    <li><a href="#" class="text-light">Thể thao</a></li>
+                    <li><a href="#" class="text-light">Khoa học</a></li>
+                    <li><a href="#" class="text-light">Xe</a></li>
+                    <li><a href="#" class="text-light">Thời trang</a></li>
+                    <li><a href="#" class="text-light">Xã hội</a></li>
                 </ul>
             </div>
 
             <!-- Bài viết phổ biến -->
             <div class="col-6 col-md-3 mb-4">
-                <h5 class="text-uppercase">Most Viewed</h5>
+                <h5 class="text-uppercase">Bài viết nổi</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-light">Success is not a good teacher...</a></li>
-                    <li><a href="#" class="text-light">Humble yourself for growth...</a></li>
-                    <li><a href="#" class="text-light">Dream big and work hard...</a></li>
+                    <li><a href="http://127.0.0.1:8000/post/nga-na-ten-lua-hanh-trinh-vao-cac-thanh-pho-khap-ukraine.html" class="text-light">Nga nã tên lửa hành trình ....</a></li>
+                    <li><a href="http://127.0.0.1:8000/post/biet-nghe-nghiep-cua-chu-re-co-dau-lap-tuc-huy-hon.html" class="text-light">Biết nghề nghiệp của chú rể, cô dâu lập tức hủy hôn</a></li>
+                    <li><a href="http://127.0.0.1:8000/post/vi-sao-hang-ngan-nguoi-tep-trung-truoc-nha-hat-lon-ha-noi-khien-auong-tac-tu-sang-toi-chieu.html" class="text-light">Vì sao hàng ngàn người tập trung trước Nhà hát lớn Hà Nội..</a></li>
                 </ul>
             </div>
-
+            
             <!-- Đăng ký nhận tin -->
             <div class="col-12 col-md-3">
-                <h5 class="text-uppercase">Subscribe</h5>
+                <h5 class="text-uppercase">Đăng ký nhận thông tin</h5>
                 <form class="mt-3">
                     <div class="input-group">
                         <input type="email" class="form-control" placeholder="Your email...">
-                        <button class="btn btn-primary">Subscribe</button>
+                        <button class="btn btn-primary">Gửi</button>
                     </div>
                 </form>
             </div>

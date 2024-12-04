@@ -18,6 +18,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthenticateMiddleware;
+use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\SearchController;
 
 // Route để hiển thị form đăng nhập
 Route::get('login', [AuthController::class, 'index'])->name('auth.login');
@@ -63,3 +65,8 @@ Route::prefix('admin')->middleware(AuthenticateMiddleware::class)->group(functio
 Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+
+
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');

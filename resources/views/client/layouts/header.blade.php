@@ -4,10 +4,14 @@
             <img src="{{ asset('storage/images/white_logo.png') }}" alt="Logo" />
 
         </a>
-        <form id="search">
-            <input type="text" placeholder="Bạn muốn tìm gì" />
-            <button><i class="bx bx-search"></i></button>
+        
+        <form action="{{ route('search') }}" method="GET" class="d-flex ms-auto">
+            <input type="text" name="query" placeholder="Search..." class="form-control me-2" required>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>
+        
+        
+▸
     </div>
     <div class="container">
         <nav>
