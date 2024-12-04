@@ -1,7 +1,7 @@
 <div id="header">
     <div class=" container d-flex justify-content align-items-center">
         <a id="logo" href="">
-            <img src="{{ asset('storage/images/earth.png') }}" alt="Logo" />
+            <img src="{{ asset('storage/images/white_logo.png') }}" alt="Logo" />
 
         </a>
         <form id="search">
