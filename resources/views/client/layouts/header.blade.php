@@ -1,6 +1,6 @@
 <div id="header">
     <div class=" container d-flex justify-content align-items-center">
-        <a id="logo" href="">
+        <a id="logo" href="{{ url('/') }}">
             <img src="{{ asset('storage/images/white_logo.png') }}" alt="Logo" />
 
         </a>

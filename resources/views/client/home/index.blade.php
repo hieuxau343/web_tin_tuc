@@ -154,7 +154,12 @@
                         @endforeach
                     </ul>
                 </div>
+                <!-- Phân trang -->
+                <div class="pagination">
+                    {{ $posts->links() }}
+                </div>
             </div>
+
         </div>
 
         <!-- Sidebar -->
@@ -184,5 +189,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
