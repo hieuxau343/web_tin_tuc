@@ -123,6 +123,9 @@ body {
     
     <!-- End feature post -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81e5143 (done)
     <div id="wrp-content" class="container">
         <div class="d-flex">
             <div id="content">
@@ -135,6 +138,7 @@ body {
                             @include('client.home.partials.post', ['posts' => $posts])
                         </ul>
                     </div>
+<<<<<<< HEAD
                 </div>
             </div>
             <div id="side-bar">
@@ -218,6 +222,29 @@ body {
                         @endforeach
                     </ul>
 >>>>>>> db18ca0a032af692d93a0c6ab789ccc79fc3f676
+=======
+                </div>
+            </div>
+            <div id="side-bar">
+                <a href="" class="ads">
+                    <img src="{{ asset('storage/images/earth.png') }}" alt="" />
+                </a>
+                <div class="box top-topic">
+                    <div class="box-head">
+                        <h3>Chủ đề quan tâm</h3>
+                    </div>
+                    <div class="box-body">
+                        <ul class="list-topic">
+
+                            @foreach ($categories as $index => $category)
+                                <li>
+                                    <a href="{{ route('client-category.show', $category->slug) }}">{{ $category->name }}<span
+                                            class="num-post">{{ $category->posts_count }}</span></a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+>>>>>>> 81e5143 (done)
                 </div>
             </div>
         </div>
