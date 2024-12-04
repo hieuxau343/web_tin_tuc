@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 <body>
     <style>
         #header {
     background-color: #f8f9fa;
     padding: 10px 0;
 }
+=======
+<div id="header">
+    <div class=" container d-flex justify-content align-items-center">
+        <a id="logo" href="{{ url('/') }}">
+            <img src="{{ asset('storage/images/white_logo.png') }}" alt="Logo" />
+>>>>>>> b9582709a3b44a45f58f2dc358f5c8cb17fa3964
 
 #header #logo img {
     height: 50px;

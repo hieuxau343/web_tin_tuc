@@ -11,15 +11,17 @@
                     @foreach ($posts as $post)
                         @if ($loop->index == 0)
                             <!-- Lấy bài viết đầu tiên -->
-                            <a href="" class="title1">
+                            <a href="{{ route('client-post.show', $post->slug) }}" class="title1">
                                 <img style="width:100%;max-width:840px;" class="img-fluid "
                                     src="{{ asset('storage/photos/19/post/' . $post->image) }}" alt="{{ $post->title }}">
                             </a>
 
                             <h2>
-                                <a href="" class="title1">{{ $post->title }}</a>
+                                <a href="{{ route('client-post.show', $post->slug) }}"
+                                    class="title1">{{ $post->title }}</a>
                             </h2>
-                            <a href="" class="post-excerpt"> {{ strip_tags(html_entity_decode($post->content)) }}</a>
+                            <a href="{{ route('client-post.show', $post->slug) }}" class="post-excerpt">
+                                {{ strip_tags(html_entity_decode($post->content)) }}</a>
                         @endif
                     @endforeach
                 </div>
@@ -29,13 +31,14 @@
                     @foreach ($posts as $post)
                         @if ($loop->index >= 1 && $loop->index <= 2)
                             <!-- Lấy bài viết thứ 2 và 3 -->
-                            <a href="" class="title1">
+                            <a href="{{ route('client-post.show', $post->slug) }}" class="title1">
                                 <img class="img-fluid" src="{{ asset('storage/photos/19/post/' . $post->image) }}"
                                     alt="{{ $post->title }}">
                             </a>
 
                             <h2>
-                                <a href="" class="title1">{{ $post->title }}</a>
+                                <a href="{{ route('client-post.show', $post->slug) }}"
+                                    class="title1">{{ $post->title }}</a>
                             </h2>
                         @endif
                     @endforeach
@@ -43,18 +46,19 @@
             </div>
 
             <!-- Header Sub -->
-            <div class="header__sub d-flex">
+            <div class="header__sub d-flex mt-4">
                 <div class="d-flex" style="width: calc(60% - 0px); gap: 15px;">
                     @foreach ($posts as $post)
                         @if ($loop->index >= 3 && $loop->index <= 4)
                             <!-- Lấy bài viết thứ 4 và 5 -->
-                            <div class="post-item d-flex" style="gap:20px">
-                                <a href="">
+                            <div class="post-post d-flex" style="gap:20px">
+                                <a href="{{ route('client-post.show', $post->slug) }}">
                                     <img style="width:500px;object-fit: cover" class="img-fluid"
                                         src="{{ asset('storage/photos/19/post/' . $post->image) }}"
                                         alt="{{ $post->title }}">
                                 </a>
-                                <a href="" class="title1">{{ $post->title }}</a>
+                                <a href="{{ route('client-post.show', $post->slug) }}"
+                                    class="title1">{{ $post->title }}</a>
                             </div>
                         @endif
                     @endforeach
